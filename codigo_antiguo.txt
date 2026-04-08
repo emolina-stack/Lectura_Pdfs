@@ -1,0 +1,86 @@
+from pypdf import PdfReader
+
+pdf_path = "files/Ceci by iScanner.pdf"
+# pdf_path = "files/Edison Molina_demo.pdf"
+
+reader = PdfReader(pdf_path)
+num_paginas = len(reader.pages)
+
+print(f"📄 El archivo tiene: {num_paginas} páginas\n")
+
+for i, page in enumerate(reader.pages, start=1):
+    texto = (page.extract_text() or "").strip()
+    print(f"{'=' * 20} PAGINA {i} {'=' * 20}")
+    if texto:
+        print(texto)
+    else:
+        print("⚠️ Sin texto extraible en esta pagina (posible PDF escaneado).")
+    print()
+
+
+
+
+****************************************************************************************
+from pypdf import PdfReader
+from pdf2image import convert_from_path
+import pytesseract
+import re
+
+# ================== CONFIGURACIÓN ==================
+pdf_path = "files/Ceci by iScanner.pdf"
+# pdf_path = "files/NAEL LAMAN LUZURIAGA 230.89.pdf"
+# pdf_path = "files/Ceci by iScanner.pdf"
+
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
+# Configuración OCR más efectiva para números y facturas
+custom_config = r'--oem 3 --psm 6 -l spa'
+
+# Regex MEJORADO: más flexible
+patron_autorizacion = re.compile(
+    r'(?:N[Úú]MERO DE AUTORIZACI[Óó]N|NUMERO DE AUTORIZACION|NÚMERO AUTORIZACIÓN|Autorización)[:\s]*(\d{49}|\d{10,})',
+    re.IGNORECASE
+)
+
+reader = PdfReader(pdf_path)
+
+print(f"📄 El archivo tiene: {len(reader.pages)} páginas\n")
+
+for i, page in enumerate(reader.pages, start=1):
+    print(f"{'=' * 30} PAGINA {i} {'=' * 30}")
+    
+    texto = (page.extract_text() or "").strip()
+    numero_encontrado = None
+
+    # 1. Intentar con texto normal (PDF digital)
+    if texto:
+        match = patron_autorizacion.search(texto)
+        if match:
+            numero_encontrado = match.group(1)
+
+    # 2. Si no encontró, aplicar OCR
+    if not numero_encontrado:
+        print("   ⚠️  Aplicando OCR...")
+        try:
+            images = convert_from_path(pdf_path, first_page=i, last_page=i, dpi=400)
+            if images:
+                texto_ocr = pytesseract.image_to_string(images[0], config=custom_config)
+                
+                # Debug: mostrar parte del texto OCR para ver qué está viendo
+                # print("   Texto OCR:", texto_ocr[:500])   # descomenta si quieres debug
+                
+                match = patron_autorizacion.search(texto_ocr)
+                if match:
+                    numero_encontrado = match.group(1)
+        except Exception as e:
+            print(f"   ❌ Error OCR: {e}")
+
+    # Resultado final
+    if numero_encontrado:
+        print(f"✅ Número de Autorización: {numero_encontrado}")
+    else:
+        print("❌ No se encontró Número de Autorización en esta página")
+
+    print()
+
+****************CODIGO FUNCINA EN SU MAYORIA******************************
