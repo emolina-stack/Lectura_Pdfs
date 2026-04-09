@@ -13,16 +13,28 @@ def response_captcha(captcha_bytes):
 
         conn = http.client.HTTPSConnection("flowise-y3q2.onrender.com")
         payload = json.dumps({
-        "question": "contestame sin ningun comentario el dato de la imagen",
-        "uploads": [
+                "question": """Eres un experto en facturas electrónicas de Ecuador. 
+            Analiza la imagen y extrae los siguientes campos. 
+            Responde **solo** en formato JSON válido:
+
             {
-                "data": base64_imagen,
-                "type": "file",
-                "name": "Flowise.png",
-                "mime": "image/png"
+            "numero_autorizacion": "el número de 49 dígitos, NÚMERO DE AUTORIZACIÓN o CLAVE DE ACCESO",
+            "fecha_hora_autorizacion": "Fecha y hora en formato dd/mm/yyyy hh:mm:ss",
+            "ruc_receptor": "Identificación o CI",
+            "razon_social": "Razón social del cliente/Nombres y Apellidos",
+            "total": "VALOR TOTAL"
             }
-        ]
-        })
+
+            Si algún campo no se ve claramente, pon "No encontrado".No agregues texto extra.""",
+                "uploads": [
+                    {
+                        "data": base64_imagen,
+                        "type": "file",
+                        "name": "factura.png",
+                        "mime": "image/png"
+                    }
+                ]
+            })
         headers = {
         'Content-Type': 'application/json'
         }
@@ -37,16 +49,15 @@ def response_captcha(captcha_bytes):
         except:
             texto_final = respuesta.strip()
 
-        texto_completo = texto_final
-        match = re.search(r'"([^"]*)"', texto_completo)
-
+        match = re.search(r'\{.*\}', texto_final, re.DOTALL)
         if match:
-            captcha = match.group(1)
-            print(captcha)          
+            try:
+                resultado = json.loads(match.group(0))
+                return resultado
+            except:
+                return {"numero_autorizacion": "", "fecha_hora": texto_final}
         else:
-            # print("No se encontraron comillas")
-            captcha=texto_completo
-        return captcha
+            return {"numero_autorizacion": "", "fecha_hora": texto_final}
     except Exception as e:
         print("Error al procesar el captcha:", str(e))
         return ""
