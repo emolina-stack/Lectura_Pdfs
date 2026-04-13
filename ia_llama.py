@@ -51,8 +51,8 @@ Si no encuentras un campo, pon "No encontrado".''',
         print('Error:', str(e))
         return {
             'numero_autorizacion': 'Error',
-            'fecha_hora_autorizacion': str(e),
-            'ruc_receptor': '',
-            'razon_social': '',
-            'total': ''
+            'fecha_hora_autorizacion': 'Error',
+            'ruc_receptor': 'Error',
+            'razon_social': 'Error',
+            'total': 'Error'
         }

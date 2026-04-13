@@ -31,10 +31,7 @@ reader = PdfReader(pdf_path)
 
 print(f"📄 Procesando PDF con {len(reader.pages)} páginas...\n")
 
-print(f"📄 Procesando PDF con {len(reader.pages)} páginas...\n")
-
 for i, page in enumerate(reader.pages, start=1):
-    print(f"{'='*40} PAGINA {i} {'='*40}")
     print(f"{'='*40} PAGINA {i} {'='*40}")
     
     images = convert_from_path(pdf_path, first_page=i, last_page=i, dpi=400)
