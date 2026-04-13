@@ -1,6 +1,6 @@
 from pypdf import PdfReader
 from pdf2image import convert_from_path
-import pytesseract
+from ia_llama import extraer_datos_factura_llamaindex
 import re
 from interpret import response_captcha
 from PIL import Image, ImageEnhance
@@ -9,8 +9,8 @@ from PIL import Image, ImageEnhance
 # pdf_path = "files/Ceci by iScanner.pdf"   # ← Cambia si es necesario
 # pdf_path = "files/NAEL LAMAN LUZURIAGA 230.89.pdf"
 # pdf_path = "files/JACQUELINE JOHNSON 2_compressed.pdf"
-pdf_path = "files/KAREN CASTRO 466.99.pdf"
-# pdf_path = "files/Edison Molina_demo.pdf"
+# pdf_path = "files/KAREN CASTRO 466.99.pdf"
+pdf_path = "files/Edison Molina_demo.pdf"
 
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -31,7 +31,10 @@ reader = PdfReader(pdf_path)
 
 print(f"📄 Procesando PDF con {len(reader.pages)} páginas...\n")
 
+print(f"📄 Procesando PDF con {len(reader.pages)} páginas...\n")
+
 for i, page in enumerate(reader.pages, start=1):
+    print(f"{'='*40} PAGINA {i} {'='*40}")
     print(f"{'='*40} PAGINA {i} {'='*40}")
     
     images = convert_from_path(pdf_path, first_page=i, last_page=i, dpi=400)
