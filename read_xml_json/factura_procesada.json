@@ -1,0 +1,15 @@
+{
+  "clave_acceso": "1101202601099299798200120051020000487381234567812",
+  "tipo_comprobante": "FACTURA",
+  "version": null,
+  "ruc_emisor": null,
+  "razon_social_emisor": null,
+  "identificacion_receptor": null,
+  "razon_social_receptor": null,
+  "fecha_emision": null,
+  "secuencial": null,
+  "total_sin_impuestos": 0.0,
+  "total_descuento": 0.0,
+  "importe_total": 0.0,
+  "detalles": []
+}
