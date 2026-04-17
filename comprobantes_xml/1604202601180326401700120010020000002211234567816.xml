@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><factura id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>CAMPANA GUZMAN ALEX ISRAEL</razonSocial>
+    <nombreComercial>PuntoW</nombreComercial>
+    <ruc>1803264017001</ruc>
+    <claveAcceso>1604202601180326401700120010020000002211234567816</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>002</ptoEmi>
+    <secuencial>000000221</secuencial>
+    <dirMatriz>Ricardo Flores sn y José Modesto Espinoza</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>16/04/2026</fechaEmision>
+    <dirEstablecimiento>Jorge Carrera Y Remigio Crespo</dirEstablecimiento>
+    <obligadoContabilidad>NO</obligadoContabilidad>
+    <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+    <razonSocialComprador>TRANCENTER S.A.</razonSocialComprador>
+    <identificacionComprador>1792128455001</identificacionComprador>
+    <totalSinImpuestos>9.00</totalSinImpuestos>
+    <totalDescuento>0.00</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>4</codigoPorcentaje>
+        <baseImponible>9.00</baseImponible>
+        <valor>1.35</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0.00</propina>
+    <importeTotal>10.35</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>20</formaPago>
+        <total>10.35</total>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>HW001</codigoPrincipal>
+      <codigoAuxiliar>HW11</codigoAuxiliar>
+      <descripcion>Consumo de Api plan piloto</descripcion>
+      <cantidad>1</cantidad>
+      <precioUnitario>9</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>9.00</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>9.00</baseImponible>
+          <valor>1.35</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="Dirección:">Av. Amazonas N34-33 y Azuay</campoAdicional>
+    <campoAdicional nombre="Teléfono:">022454286</campoAdicional>
+    <campoAdicional nombre="Email:">asistentegerencia@transfiriendo.com</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature996429">
+<ds:SignedInfo Id="Signature-SignedInfo272082">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID308922" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature996429-SignedProperties552381">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>U5GKzeWcDc56zdIyRxnJCPcAbRw=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1218191">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>scAruqtvZWJmeccQy3fnaOoy14c=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-376491" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>KTkt70FCpgBBr1jopetdFki9vDM=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue565900">
+kzQga5tjg0C31S14WyCFsKbEbsK+kFGuqjG//WFkROGFKRdsfKqmUMdh7dUBopDXu4fv/rxP28+8
+oiMbpwGaNOfl1pgYQx+PUYSSKyGAoC5o57xE9IkgFi65ke9Kf3vQMEtJ2tTTc5wZInyNV0qSaDAU
+glg7iHnrWFQCk5OqaRb6Yzs/DNUoDMPKTtNOg1scdIDSI+IHp5EUdwBGr/p6dHHSG5wlI+sv7GiW
+qkNuyZh4h1hI298mNvJLpm+ksTIdd0BqgknuibK5SYQnjNtA4tIrJeGYWZpyPN3Me1hDunbXrkWR
+lasyICzuAZO2TVZ/1fzOFurg/vNFJ9tkS1tUyQ==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1218191">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIH6DCCBtCgAwIBAgIFAMIAwmQwDQYJKoZIhvcNAQELBQAwRzELMAkGA1UEBhMCRUMxGzAZBgNV
+BAoMEkxhenphdGUgQ2lhLiBMdGRhLjEbMBkGA1UEAwwSTGF6emF0ZSBFbWlzb3IgQ0EyMB4XDTI1
+MDEzMDE2NDgyNVoXDTI3MDEzMDE2NDgyNVowgZYxCzAJBgNVBAYTAkVDMRswGQYDVQQKDBJMYXp6
+YXRlIENpYS4gTHRkYS4xHjAcBgNVBAsMFUVudGUgZGUgQ2VydGlmaWNhY2lvbjElMCMGA1UEAwwc
+QUxFWCBJU1JBRUwgIENBTVBBw5FBIEdVWk1BTjEjMCEGCSqGSIb3DQEJARYUYWljZ2djaWFAaG90
+bWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCghkxg8de2qfl/6sqx45iJ
+0tfY5CkZdZuFm97/l6s9aorRLpFMJbuegVFJArMN9G6azlTWp8bYr8leWVbhavYWlnF1uxFrj+oX
+tEKKAaxCpUS+J2xeZ8eGHaysUjEIpqth2N9mlxIhtw/g4NvXIUqhf328izvmtKK2PqAx/x7nl7uW
+knVWAi8JLWlVRoHidqLBAAl4lmkppBc3wFHm4nLaTSWrhuyR9cY68Xtr962mwjDy/vhOTZkfxPOZ
+5+s6MzS2BPcBYSnb8zglUVXd+XFimq77UICpD/cyMpE31Hjvr24CtdYjODMviUL8BMO9bipbxumz
+1LY1DfN0tuxY6JMLAgMBAAGjggSJMIIEhTAaBgorBgEEAYPPdgMBBAwMCjE4MDMyNjQwMTcwGwYK
+KwYBBAGDz3YDAgQNDAtBTEVYIElTUkFFTDAXBgorBgEEAYPPdgMDBAkMB0NBTVBBTkEwFgYKKwYB
+BAGDz3YDBAQIDAZHVVpNQU4wMgYKKwYBBAGDz3YDBwQkDCJKb3JnZSBDYXJyZXJhIDAxLTkwIFJl
+bWlnaW8gQ3Jlc3BvMBoGCisGAQQBg892AwgEDAwKMDk5NTg4MTUxNDAWBgorBgEEAYPPdgMJBAgM
+BkFtYmF0bzAXBgorBgEEAYPPdgMMBAkMB0VDVUFET1IwHQYKKwYBBAGDz3YDCwQPDA0xODAzMjY0
+MDE3MDAxMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFPwaNrL/rJR4zWLFepdkoFXAklLnMB8GA1Ud
+IwQYMBaAFO12SLAK8cmGhgxMRmTSBvjM1b0+MA4GA1UdDwEB/wQEAwIF4DA6BgNVHR8EMzAxMC+g
+LaArhilodHRwOi9lbmV4dDIueHl6L0xhenphdGVDQTIvZW1pc29yQ0EyLmNybDCCAYQGA1UdIASC
+AXswggF3MHwGCisGAQQBg892AgEwbjBsBggrBgEFBQcCAjBgGl5FbCBwcmVzZW50ZSBjZXJ0aWZp
+Y2FkbyBlcyBlbWl0aWRvIGVuIGJhc2UgYSBsYXMgcG9sw610aWNhcyBkZSBzZWd1cmlkYWQgZGUg
+TGF6emF0ZSBDaWEuIEx0ZGEuMIH2BgkrBgEEAYPPdgIwgegwbAYIKwYBBQUHAgIwYBpeRWwgcHJl
+c2VudGUgY2VydGlmaWNhZG8gZXMgZW1pdGlkbyBlbiBiYXNlIGEgbGFzIHBvbMOtdGljYXMgZGUg
+c2VndXJpZGFkIGRlIExhenphdGUgQ2lhLiBMdGRhLjB4BggrBgEFBQcCAjBsGmpFbCBwcmVzZW50
+ZSBjZXJ0aWZpY2FkbyBzdWJvcmRpbmFkbyBlcyBlbWl0aWRvIGVuIGJhc2UgYSBsYXMgcG9sw610
+aWNhcyBkZSBzZWd1cmlkYWQgZGUgTGF6emF0ZSBDaWEuIEx0ZGEuMIIBFwYDVR0RBIIBDjCCAQqg
+GgYKKwYBBAGDz3YDAaAMDAoxODAzMjY0MDE3oBsGCisGAQQBg892AwKgDQwLQUxFWCBJU1JBRUyg
+FwYKKwYBBAGDz3YDA6AJDAdDQU1QQU5BoBYGCisGAQQBg892AwSgCAwGR1VaTUFOoDIGCisGAQQB
+g892AwegJAwiSm9yZ2UgQ2FycmVyYSAwMS05MCBSZW1pZ2lvIENyZXNwb6AaBgorBgEEAYPPdgMI
+oAwMCjA5OTU4ODE1MTSgFgYKKwYBBAGDz3YDCaAIDAZBbWJhdG+gFwYKKwYBBAGDz3YDDKAJDAdF
+Q1VBRE9SoB0GCisGAQQBg892AwugDwwNMTgwMzI2NDAxNzAwMTA8BggrBgEFBQcBAQQwMC4wLAYI
+KwYBBQUHMAGGIGh0dHA6Ly9lbmV4dDIueHl6Ojg3NzcvYWRzcy9vY3NwMA0GCSqGSIb3DQEBCwUA
+A4IBAQCMlif43Xx6ihpybxIKGn7lREyWk+HVo4WtqtRSk11BJ+j49ha1fL+9v6Z48V4SWrrWHLkx
+vrrs2wrq62n8+fT+8dWyuxZ5qRAbqVWoPxJ36W2wKutjpokY1CZqf+r9VmCFn1rtd71/E+qd8nAM
+Tu1KQytJQsjH9daphaoyEuP5atknutweik3dzNHvvEdUgjBbk77wJHgHM9Bv2C4TGBONoNx3w0Ix
+wzYduQmxUrR73xP0D5eGFwBFmx0iWygR+eE7b3v6MFuw9cckT8XfhitEkO32OM1pypSVPtXJ5gtR
+vNVgwYgUgdyoMefW8wSAi1GFtLL9bfGXlgGNasii6CqA
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+oIZMYPHXtqn5f+rKseOYidLX2OQpGXWbhZve/5erPWqK0S6RTCW7noFRSQKzDfRums5U1qfG2K/J
+XllW4Wr2FpZxdbsRa4/qF7RCigGsQqVEvidsXmfHhh2srFIxCKarYdjfZpcSIbcP4ODb1yFKoX99
+vIs75rSitj6gMf8e55e7lpJ1VgIvCS1pVUaB4naiwQAJeJZpKaQXN8BR5uJy2k0lq4bskfXGOvF7
+a/etpsIw8v74Tk2ZH8TzmefrOjM0tgT3AWEp2/M4JVFV3flxYpqu+1CAqQ/3MjKRN9R4769uArXW
+IzgzL4lC/ATDvW4qW8bps9S2NQ3zdLbsWOiTCw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature996429-Object12021"><etsi:QualifyingProperties Target="#Signature996429"><etsi:SignedProperties Id="Signature996429-SignedProperties552381"><etsi:SignedSignatureProperties><etsi:SigningTime>2026-04-16T08:36:44+02:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>yiVt+zkGXzfygi6TNYOxtbdCxoc=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=Lazzate Emisor CA2,O=Lazzate Cia. Ltda.,C=EC</ds:X509IssuerName><ds:X509SerialNumber>3254829668</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-376491"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>
