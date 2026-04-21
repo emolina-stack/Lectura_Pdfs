@@ -1,72 +1,62 @@
-import xml.etree.ElementTree as ET
+import xmltodict
+import json
 from pathlib import Path
-from typing import Dict, Any
+import xmltodict
+import json
+from pathlib import Path
 
-def leer_xml_factura(ruta_xml: str) -> Dict[str, Any]:
-    """
-    Lee un XML de factura electrónica del SRI y extrae los campos principales.
-    """
-    tree = ET.parse(ruta_xml)
-    root = tree.getroot()
+def leer_xml_con_xmltodict(ruta_xml: str):
+    """Versión corregida - maneja correctamente el CDATA"""
+    with open(ruta_xml, encoding='utf-8') as f:
+        xml_str = f.read()
 
-    # Namespace del SRI (muy importante)
-    ns = {'sri': 'http://www.sri.gob.ec/factura'}
+    # Parsear el XML exterior
+    data = xmltodict.parse(xml_str)
 
-    def find(tag: str, default=None):
-        """Busca un elemento dentro del namespace"""
-        elem = root.find(f".//sri:{tag}", ns)
-        return elem.text.strip() if elem is not None and elem.text else default
+    # Extraer datos del envoltorio <autorizacion>
+    autorizacion = data.get('autorizacion', {})
 
-    datos = {
-        "clave_acceso": Path(ruta_xml).stem,
-        "tipo_comprobante": root.get("id", "FACTURA"),
-        "version": root.get("version"),
+    # Extraer y parsear el CDATA (la factura real)
+    comprobante_str = autorizacion.get('comprobante', '')
+    if isinstance(comprobante_str, str):
+        factura_dict = xmltodict.parse(comprobante_str)
+    else:
+        factura_dict = comprobante_str  # por si ya viene como dict
 
-        # Información del emisor
-        "ruc_emisor": find("ruc"),
-        "razon_social_emisor": find("razonSocial"),
+    factura = factura_dict.get('factura', {})
 
-        # Información del receptor
-        "identificacion_receptor": find("identificacionComprador"),
-        "razon_social_receptor": find("fechaAutorizacion"),
+    info_tributaria = factura.get('infoTributaria', {})
+    info_factura = factura.get('infoFactura', {})
 
-        # Datos de la factura
-        "fecha_emision": find("fechaEmision"),
-        "secuencial": find("secuencial"),
-        "total_sin_impuestos": float(find("totalSinImpuestos") or 0),
-        "total_descuento": float(find("totalDescuento") or 0),
-        "importe_total": float(find("importeTotal") or 0),
-
-        # Detalles de los productos
-        "detalles": []
+    # Datos principales
+    info = {
+        "numero_autorizacion": autorizacion.get('numeroAutorizacion'),
+        # "fecha_autorizacion": autorizacion.get('fechaAutorizacion'),
+        
+        # # "clave_acceso": info_tributaria.get('claveAcceso'),
+        "ruc_emisor": info_tributaria.get('ruc'),
+        # "razon_social_emisor": info_tributaria.get('razonSocial'),
+        
+        # "razon_social_receptor": info_factura.get('razonSocialComprador'),
+        # "identificacion_receptor": info_factura.get('identificacionComprador'),
+        # "importe_total": float(info_factura.get('importeTotal', 0)),
+        
     }
 
-    # Extraer todos los ítems
-    for detalle in root.findall(".//sri:detalle", ns):
-        datos["detalles"].append({
-            "codigo": find("codigoPrincipal", parent=detalle),
-            "descripcion": find("descripcion", parent=detalle),
-            "cantidad": float(find("cantidad", parent=detalle) or 0),
-            "precio_unitario": float(find("precioUnitario", parent=detalle) or 0),
-            "precio_total": float(find("precioTotalSinImpuesto", parent=detalle) or 0),
+    # Extraer detalles de productos
+    detalles = info_factura.get('detalles', {}).get('detalle', [])
+    if not isinstance(detalles, list):
+        detalles = [detalles]
+
+    for det in detalles:
+        info["detalles"].append({
+            "codigo": det.get('codigoPrincipal'),
+            "descripcion": det.get('descripcion'),
+            "cantidad": float(det.get('cantidad', 0)),
+            "precio_unitario": float(det.get('precioUnitario', 0)),
+            "precio_total": float(det.get('precioTotalSinImpuesto', 0)),
         })
 
-    return datos
+    return info
 
-if __name__ == "__main__":
-    ruta = "../comprobantes_xml/1101202601099299798200120051020000487381234567812.xml"
-    
-    factura = leer_xml_factura(ruta)
-    
-    print("✅ XML leído correctamente")
-    print(f"autorizacion: {factura['clave_acceso']}")
-    print(f"Emisor: {factura['razon_social_emisor']} ({factura['ruc_emisor']})")
-    print(f"Receptor: {factura['razon_social_receptor']}")
-    print(f"Fecha: {factura['fecha_emision']}")
-    print(f"Total: ${factura['importe_total']:.2f}")
-    print(f"Items: {len(factura['detalles'])} productos")
-    
-    # Guardar en JSON (muy útil)
-    import json
-    with open("factura_procesada.json", "w", encoding="utf-8") as f:
-        json.dump(factura, f, indent=2, ensure_ascii=False)
+

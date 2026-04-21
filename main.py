@@ -21,10 +21,10 @@ def procesar_json_y_enviar_a_api(ruta_json: str):
 
 
     for i, item in enumerate(datos, 1):
-        clave = item.get("autorizacion")
+        clave = item.get("autorizacion_json")
         pdf_nombre = item.get("pdf_nombre", "Desconocido")
         
-        print(f"[{i}/{len(datos)}] Procesando → {clave[:20]}... (de {pdf_nombre})")
+        # print(f"[{i}/{len(datos)}] Procesando → {clave[:20]}... (de {pdf_nombre})")
 
         try:
             # 3. Recuperar el comprobante
@@ -57,9 +57,9 @@ def procesar_json_y_enviar_a_api(ruta_json: str):
     print("="*70)
 
 
-def main():
+def main(json_path):
     # Cambia esta ruta por la de tu archivo JSON
-    json_path = "json_files/claves_Ceci by iScanner.json"     # ← pon aquí tu archivo
+    # json_path = "json_files/claves_Ceci by iScanner.json"     # ← pon aquí tu archivo
     
     procesar_json_y_enviar_a_api(json_path) 
 # # ====================== USO ======================

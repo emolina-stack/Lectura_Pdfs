@@ -100,7 +100,7 @@ class ProcesadorEasyOCR:
         # Autorización (37-49 dígitos seguidos)
         match = re.search(r'(\d{49})', texto, re.IGNORECASE)
 
-        datos['autorizacion'] = match.group(1) if match else None
+        datos['autorizacion_json'] = match.group(1) if match else None
         
         # RUC (13 dígitos)
         match = re.search(r'(\d{13})', texto)
@@ -138,8 +138,8 @@ class ProcesadorEasyOCR:
                 print(f"  Página {num}/{len(imagenes)}...", end=" ")
                 
                 # Convertir PIL -> Numpy (RGB)
-                # img_array = np.array(img_pil)
-                img_array = preprocess_image(img_pil)
+                img_array = np.array(img_pil)
+                # img_array = preprocess_image(img_pil)
                 
                 # OCR (detail=0 devuelve solo texto, detail=1 devuelve coordenadas)
                 # Para flujo básico usamos detail=0 (más rápido)
@@ -159,12 +159,13 @@ class ProcesadorEasyOCR:
                     
                 })
 
-                if campos['autorizacion']:
+                if campos['autorizacion_json']:
                     lista_claves.append({
                         "pdf_nombre": nombre,
                         "pagina": num,
-                        "autorizacion": campos['autorizacion'],
-                        "total": campos['total']
+                        "autorizacion_json": campos['autorizacion_json'],
+                        "ruc_json": campos['ruc'],
+                        # "total": campos['total']
 
                     })
                 
@@ -188,8 +189,8 @@ class ProcesadorEasyOCR:
             return [{
                 'archivo': nombre,
                 'pagina': 0,
-                'autorizacion': None,
-                'ruc': None,
+                'autorizacion_json': None,
+                'ruc_json': None,
                 'numero_factura': None,
                 'total': None,
                 'error': str(e)
